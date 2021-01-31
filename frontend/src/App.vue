@@ -79,7 +79,7 @@ export default {
             if (this.selected.length == 2) {
               setTimeout(() => {
                 this.submit();
-              }, 500);
+              }, 1000);
             }
             this.getBoard();
           }
@@ -188,7 +188,7 @@ export default {
         this.selected = [];
         setTimeout(() => { // give time to flask and redis to delete keys
           this.getBoard();
-        }, 300)
+        }, 600)
 
     },
   },
