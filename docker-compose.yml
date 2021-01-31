@@ -15,7 +15,7 @@ services:
     init: true
     build: .
     volumes:
-      - /etc/letsencrypt/live/demo.serkanozel.me/:/opt/app/cert/
+      - /etc/letsencrypt/archive/demo.serkanozel.me:/opt/app/cert/
     ports:
       - 3000:3000
     networks:
