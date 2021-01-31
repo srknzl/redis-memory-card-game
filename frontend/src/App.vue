@@ -25,6 +25,7 @@
         <p v-if="getCardValue(k) > 50">{{getCardValue(k)}}</p>
       </div>
     </div>
+    <p v-if="gameNumber != 0">Game number: {{gameNumber}}</p>
     <p v-if="boardKeys.length == 0 && boardReady">Congrats</p>
   </div>
 </template>
@@ -32,7 +33,7 @@
 <script>
 import axios from "axios";
 
-let server = "http://localhost:3000";
+let server = "https://demo.serkanozel.me:3000";
 
 export default {
   name: "App",
@@ -48,10 +49,8 @@ export default {
       selected: [],
       boardKeys: [],
       cardValues: {},
+      gameNumber: 0
     };
-  },
-  computed: {
-    
   },
   methods: {
     getBackgroundColorOfCard(k) {
@@ -69,6 +68,7 @@ export default {
       axios
         .post(server + "/get-card", {
           index: k,
+          game_number: this.gameNumber
         })
         .then((d) => {
           if (d.status != 200) {
@@ -99,6 +99,7 @@ export default {
             alert(d.data.msg);
           } else {
             this.boardReady = true;
+            this.gameNumber = d.data.game_number
             this.getBoard();
           }
         })
@@ -110,7 +111,7 @@ export default {
     },
     getBoard() {
       axios
-        .get(server + "/get-board")
+        .get(server + "/get-board?game_number="+this.gameNumber)
         .then((d) => {
           if (d.status != 200) {
             alert("Could not reach to server");
@@ -168,6 +169,7 @@ export default {
         .post(server + "/submit", {
           index1: this.selected[0],
           index2: this.selected[1],
+          game_number: this.gameNumber
         })
         .then(() => {
 
