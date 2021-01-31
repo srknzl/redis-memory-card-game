@@ -33,7 +33,7 @@
 <script>
 import axios from "axios";
 
-let server = "https://demo.serkanozel.me:3000";
+let server = "http://demo.serkanozel.me:3000";
 
 export default {
   name: "App",
