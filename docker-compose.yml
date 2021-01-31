@@ -1,0 +1,22 @@
+version: "3"
+services: 
+  redis:
+    image: redis:6.0.10
+    networks:
+      - redis_card_network
+  frontend:
+    build: frontend
+    init: true
+    networks: 
+      - redis_card_network
+    ports:
+      - 8080:8080
+  server:
+    init: true
+    build: .
+    ports:
+      - 3000:3000
+    networks:
+      - redis_card_network
+networks:
+  redis_card_network:
