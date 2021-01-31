@@ -4,8 +4,6 @@ RUN apk add --no-cache python3 py3-pip
 
 RUN pip3 install gunicorn==20.0.4 flask==1.1.2 redis==3.5.3 flask-cors==3.0.10
 
-ADD /etc/letsencrypt/live/demo.serkanozel.me/fullchain.pem /opt/app/cert/
-ADD /etc/letsencrypt/live/demo.serkanozel.me/privkey.pem /opt/app/cert/
 RUN ls /opt/app/cert
 
 WORKDIR /opt/app
