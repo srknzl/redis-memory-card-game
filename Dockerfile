@@ -8,4 +8,4 @@ WORKDIR /opt/app
 
 ADD api.py .
 
-ENTRYPOINT [ "gunicorn", "api:app", "-b", "127.0.0.1:3000", "--key-file", "/opt/app/cert/privkey.pem", "--certfile", "/opt/app/cert/fullchain.pem"]
+ENTRYPOINT [ "gunicorn", "-b", "127.0.0.1:3000", "--key-file", "/opt/app/cert/privkey.pem", "--certfile", "/opt/app/cert/fullchain.pem", "api:app"]
